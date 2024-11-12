@@ -77,111 +77,139 @@ body {
 }
 
 .hero-section {
-  min-height: 100vh;
+  position: relative;
+  min-height: 50vh; /* Reducimos a la mitad el espacio vertical */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md); /* Reducimos el padding para ajustar */
   overflow: hidden;
-  
 }
 
-.hero-section::before {
-  content: '';
+.hero-slide {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('../images/hero-background.jpg') center/cover no-repeat;
-  filter: blur(8px); /* Efecto de desenfoque aplicado solo al fondo */
-  opacity: 0.5; /* Ajusta la opacidad según sea necesario */
-  z-index: -1; /* Asegura que el fondo esté detrás del contenido */
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0; /* Todas las imágenes ocultas por defecto */
+  filter: blur(8px); /* Aplica el efecto de desenfoque */
+  transition: opacity 1s ease-in-out, filter 1s ease-in-out; /* Suaviza la transición */
 }
+
+.hero-slide:nth-child(1) {
+  background-image: url('images/hero1.jpg');
+}
+
+.hero-slide:nth-child(2) {
+  background-image: url('images/hero2.jpg');
+}
+
+.hero-slide:nth-child(3) {
+  background-image: url('images/hero3.jpg');
+}
+
+.hero-slide:nth-child(4) {
+  background-image: url('images/hero4.jpg');
+}
+
+.hero-slide:nth-child(5) {
+  background-image: url('images/hero5.jpg');
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Asegura que las imágenes no se desborden */
+}
+
+.hero-slide-active {
+  opacity: 1;
+  filter: blur(8px); /* Mantiene el desenfoque */
+}
+
 
 .hero-section h2 {
-  font-size: clamp(2rem, 5vw, 4rem); /* Escala dinámica */
+  position: relative;
+  font-size: clamp(1.5rem, 3vw, 3rem); /* Tamaño de fuente ajustado */
   text-align: center;
-  margin-bottom: var(--spacing-md);
-  color: var(--text-light);
-  z-index: 1; /* Asegura que esté por encima del fondo */
-  position: relative; /* Establece un nuevo contexto para el z-index */
+  margin-bottom: var(--spacing-sm);
+  z-index: 1;
 }
 
-.hero-section .cta-button {
-  z-index: 1; /* Botón también por encima del fondo */
-  position: relative;
+.cta-buttons {
+  display: flex;
+  gap: var(--spacing-md); /* Espaciado entre los botones */
+  justify-content: center;
+  margin-top: var(--spacing-md); /* Espacio superior adicional */
+  z-index: 1;
 }
 
 .cta-button {
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px; /* Anchura del botón */
+  height: 50px; /* Altura del botón */
   background-color: var(--primary-color);
-  color: var(--text-light);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 10px; /* Bordes redondeados */
   transition: var(--transition);
-  font-family: 'Orbitron', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
 }
 
-.cta-button a {
-  color: inherit;
-  text-decoration: none;
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  padding: inherit;
+.cta-button img {
+  width: 30px; /* Ajusta el tamaño del logo dentro del botón */
+  height: auto;
+  margin-right: 10px; /* Espacio entre el logo y el texto */
+}
+
+.cta-button span {
+  color: var(--text-light);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
 }
 
 .cta-button:hover {
   background-color: var(--primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 69, 0, 0.3);
-}
-
-.artists-section {
-  padding: var(--spacing-lg);
-  background-color: var(--bg-section);
-}
-
-.artists-section h2 {
-  text-align: center;
-  margin-bottom: var(--spacing-lg);
-  font-size: 2.5rem;
+  box-shadow: 0 10px 20px rgba(255, 69, 0, 0.3);
+  transform: translateY(-3px);
 }
 
 .artist-gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Ajusta según la reducción */
   gap: var(--spacing-md);
+  justify-content: center;
   padding: var(--spacing-md);
-}
-
-@media (max-width: 992px) {
-  .artist-gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 576px) {
-  .artist-gallery {
-    grid-template-columns: 1fr;
-  }
 }
 
 .artist {
   position: relative;
+  width: 180px; /* Reducido un 40% respecto al tamaño anterior */
   aspect-ratio: 1;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  transition: var(--transition);
-  transform: scale(0.8); /* Escala al 80% */;
+  transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.5s ease;
+}
+
+.artist:hover {
+  transform: scale(1.2); /* Ajuste proporcional */
+  z-index: 10;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.artist:hover ~ .artist {
+  transform: scale(0.8);
+  opacity: 0.5;
 }
 
 .artist-img {
@@ -193,37 +221,23 @@ body {
 .artist-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.4) 100%);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   opacity: 0;
-  transition: var(--transition);
+  transition: opacity 0.3s ease;
 }
 
-.artist-name {
-  font-size: 1.5rem;
-  color: var(--text-light);
-  margin-bottom: 1rem;
-  transform: translateY(20px);
-  transition: var(--transition);
-  text-align: center;
-  display: none;
-}
-
-.artist:hover .artist-name {
-  display: none;
+.artist:hover .artist-overlay {
+  opacity: 1;
 }
 
 .artist-logo {
-  max-width: 80%;
-  max-height: 100px;
+  max-width: 70%; /* Proporcional al nuevo tamaño */
+  max-height: 80px;
   object-fit: contain;
-  transform: translateY(20px);
-  opacity: 0;
-  transition: var(--transition);
-  pointer-events: none;
 }
 
 .spotify-button {

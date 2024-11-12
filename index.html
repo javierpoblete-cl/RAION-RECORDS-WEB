@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+      <!-- Vincula el archivo JavaScript -->
+  <script src="js/script.js"></script>
+</body>
+</html>
+
     <!-- El nav permanece igual -->
     <nav class="navbar">
         <a href="#" class="logo">
@@ -23,60 +29,79 @@
 
     <main>
         <!-- La sección hero permanece igual -->
-        <section id="hero" class="hero-section">
-            <h2>Descubre el Futuro de la Música</h2>
-            <button class="cta-button">
-                <a href="https://open.spotify.com/playlist/4ABDzZbKL71qxiOpFofk8P?si=cde500650e4c4d50" target="_blank" rel="noopener noreferrer">Playlist en Spotify</a>
-            </button>            
-        </section>
+        <section class="hero-section">
+            <div class="hero-background">
+              <div class="hero-slide" style="background-image: url('images/hero1.jpg');"></div>
+              <div class="hero-slide" style="background-image: url('images/hero2.jpg');"></div>
+              <div class="hero-slide" style="background-image: url('images/hero3.jpg');"></div>
+              <div class="hero-slide" style="background-image: url('images/hero4.jpg');"></div>
+              <div class="hero-slide" style="background-image: url('images/hero5.jpg');"></div>
+            </div>
+            <h2>Bienvenidos a Nuestra Plataforma Musical</h2>
+            <div class="cta-buttons">
+                <a href="https://open.spotify.com" class="cta-button spotify-button">
+                  <img src="images/logos/spotify-logo.png" alt="Spotify">
+                  <span>Spotify</span>
+                </a>
+                <a href="https://music.youtube.com" class="cta-button youtube-button">
+                  <img src="images/logos/youtube-music-logo.png" alt="YouTube Music">
+                  <span>YouTube Music</span>
+                </a>
+              </div>
+              
+          </section>
+          
 
-        <section id="artists" class="artists-section">
+          <section id="artists" class="artists-section">
             <h2>Nuestros Artistas</h2>
             <div class="artist-gallery">
-                <div class="artist">
-                    <img src="images/artist1.jpg" alt="Artista 1" class="artist-img">
-                    <div class="artist-overlay">
-                        <h3 class="artist-name">Artista 1</h3>
-                        <img src="images/logos/logo1.png" alt="Logo Artista 1" class="artist-logo">
-                    </div>
+              <div class="artist">
+                <img src="images/artist1.jpg" alt="Artista 1" class="artist-img">
+                <div class="artist-overlay">
+                  <img src="images/logos/logo1.png" alt="Logo Artista 1" class="artist-logo">
                 </div>
-                <div class="artist">
-                    <img src="images/artist2.jpg" alt="Artista 2" class="artist-img">
-                    <div class="artist-overlay">
-                        <h3 class="artist-name">ZENTRAEDI</h3>
-                        <img src="images/logos/logo2.png" alt="Logo Artista 2" class="artist-logo">
-                    </div>
+              </div>
+              <div class="artist">
+                <img src="images/artist2.jpg" alt="Artista 2" class="artist-img">
+                <div class="artist-overlay">
+                  <img src="images/logos/logo2.png" alt="Logo Artista 2" class="artist-logo">
                 </div>
-                <div class="artist">
-                    <img src="images/artist3.jpg" alt="Artista 3" class="artist-img">
-                    <div class="artist-overlay">
-                        <h3 class="artist-name">Artista 3</h3>
-                        <img src="images/logos/logo3.png" alt="Logo Artista 3" class="artist-logo">
-                    </div>
+              </div>
+              <div class="artist">
+                <img src="images/artist3.jpg" alt="Artista 3" class="artist-img">
+                <div class="artist-overlay">
+                  <img src="images/logos/logo3.png" alt="Logo Artista 3" class="artist-logo">
                 </div>
-                <div class="artist">
-                    <img src="images/artist4.jpg" alt="Artista 4" class="artist-img">
-                    <div class="artist-overlay">
-                        <h3 class="artist-name">JAVIER POBLETE</h3>
-                        <img src="images/logos/logo4.png" alt="Logo Artista 4" class="artist-logo">
-                    </div>
+              </div>
+              <div class="artist">
+                <img src="images/artist4.jpg" alt="Artista 4" class="artist-img">
+                <div class="artist-overlay">
+                  <img src="images/logos/logo4.png" alt="Logo Artista 4" class="artist-logo">
                 </div>
-                <div class="artist">
-                    <img src="images/artist5.jpg" alt="Artista 5" class="artist-img">
-                    <div class="artist-overlay">
-                        <h3 class="artist-name">Artista 5</h3>
-                        <img src="images/logos/logo5.png" alt="Logo Artista 5" class="artist-logo">
-                    </div>
+              </div>
+              <div class="artist">
+                <img src="images/artist5.jpg" alt="Artista 5" class="artist-img">
+                <div class="artist-overlay">
+                  <img src="images/logos/logo5.png" alt="Logo Artista 5" class="artist-logo">
                 </div>
-                <div class="artist">
-                    <img src="images/artist6.jpg" alt="Artista 6" class="artist-img">
-                    <div class="artist-overlay">
-                        <h3 class="artist-name">Artista 6</h3>
-                        <img src="images/logos/logo6.png" alt="Logo Artista 6" class="artist-logo">
-                    </div>
+              </div>
+              <div class="artist">
+                <img src="images/artist6.jpg" alt="Artista 6" class="artist-img">
+                <div class="artist-overlay">
+                  <img src="images/logos/logo6.png" alt="Logo Artista 6" class="artist-logo">
                 </div>
+              </div>
+              <div class="artist">
+                <img src="images/artist7.jpg" alt="Artista 7" class="artist-img">
+                <div class="artist-overlay">
+                  <img src="images/logos/logo7.png" alt="Logo Artista 7" class="artist-logo">
+                </div>
+              </div>
             </div>
-        </section>
+          </section>
+          
+          
+          
 
         <!-- Las demás secciones permanecen igual -->
         <section id="about" class="about-section">
