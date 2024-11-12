@@ -1,0 +1,387 @@
+:root {
+  --primary-color: #ff4500;
+  --primary-dark: #e63900;
+  --bg-dark: #0a0a0a;
+  --bg-darker: #050505;
+  --bg-section: #000000;
+  --text-light: #ffffff;
+  --text-gray: #888888;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-classic: 'Merriweather', sans-serif ;
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: rgba(5, 5, 5, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--spacing-md);
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-light);
+  text-decoration: none;
+  position: relative;
+  padding: 0.5rem;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: var(--transition);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: var(--spacing-lg);
+  overflow: hidden;
+  
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../images/hero-background.jpg') center/cover no-repeat;
+  filter: blur(8px); /* Efecto de desenfoque aplicado solo al fondo */
+  opacity: 0.5; /* Ajusta la opacidad según sea necesario */
+  z-index: -1; /* Asegura que el fondo esté detrás del contenido */
+}
+
+.hero-section h2 {
+  font-size: clamp(2rem, 5vw, 4rem); /* Escala dinámica */
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-light);
+  z-index: 1; /* Asegura que esté por encima del fondo */
+  position: relative; /* Establece un nuevo contexto para el z-index */
+}
+
+.hero-section .cta-button {
+  z-index: 1; /* Botón también por encima del fondo */
+  position: relative;
+}
+
+.cta-button {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cta-button a {
+  color: inherit;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: inherit;
+}
+
+.cta-button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 69, 0, 0.3);
+}
+
+.artists-section {
+  padding: var(--spacing-lg);
+  background-color: var(--bg-section);
+}
+
+.artists-section h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  font-size: 2.5rem;
+}
+
+.artist-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+}
+
+@media (max-width: 992px) {
+  .artist-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .artist-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+.artist {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: var(--transition);
+  transform: scale(0.8); /* Escala al 80% */;
+}
+
+.artist-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.artist-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.4) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.artist-name {
+  font-size: 1.5rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  transform: translateY(20px);
+  transition: var(--transition);
+  text-align: center;
+  display: none;
+}
+
+.artist:hover .artist-name {
+  display: none;
+}
+
+.artist-logo {
+  max-width: 80%;
+  max-height: 100px;
+  object-fit: contain;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: var(--transition);
+  pointer-events: none;
+}
+
+.spotify-button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+}
+
+.spotify-button:hover {
+  background-color: var(--primary-dark);
+}
+
+.artist:hover .artist-overlay {
+  opacity: 1;
+}
+
+.artist:hover .artist-name,
+.artist:hover .artist-logo {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.artist:hover .artist-img {
+  transform: scale(1.1);
+}
+
+.about-section {
+  padding: var(--spacing-lg);
+  text-align: center;
+  background-color: var(--bg-section);
+  font-family: var(--font-classic); /* Aplica la fuente clásica */
+  color: var(--text-light);
+}
+
+.about-section h2 {
+  font-size: 3.5rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.about-section p {
+  font-size: 1.5rem; /* Tamaño ligeramente mayor para mejor legibilidad */
+  line-height: 1.5;  /* Incrementa el interlineado para mayor claridad */
+  max-width: 70%;
+  margin: 0 auto;
+  color: var(--text-gray);
+}
+
+.contact-section {
+  padding: var(--spacing-lg);
+  text-align: center;
+  background-color: var(--bg-section);
+  color: var(--text-light);
+  font-family: var(--font-classic); /* Fuente clásica para coherencia */
+}
+
+.contact-section h2 {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.contact-section p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--text-gray);
+}
+
+.contact-section .cta-button {
+  margin-top: var(--spacing-md);
+}
+
+.contact-section form {
+  margin-top: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-section input,
+.contact-section textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+.contact-section input:focus,
+.contact-section textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.contact-section button {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.contact-section button:hover {
+  background-color: var(--primary-dark);
+}
+
+
+footer {
+  background-color: var(--bg-darker);
+  color: var(--text-gray);
+  text-align: center;
+  padding: var(--spacing-md);
+  font-size: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+footer p {
+  margin: 0.5rem 0;
+}
+
+footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-top: 0.5rem;
+}
+
+footer a:hover {
+  color: var(--primary-dark);
+}
+
+
+@media (max-width: 768px) {
+  .hero-section h2 {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .artist-name {
+    font-size: 1.2rem;
+  }
+}
