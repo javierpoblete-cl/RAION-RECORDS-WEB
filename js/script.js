@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializa el carrusel
     slides.forEach((slide, index) => {
       slide.style.opacity = index === 0 ? '1' : '0';
-      slide.style.filter = 'blur(8px)'; // Mantén el desenfoque
+      slide.style.filter = 'blur(5px)'; // Mantén el desenfoque
     });
   
     setInterval(showNextSlide, 5000);
