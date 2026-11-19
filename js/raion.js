@@ -1,3 +1,25 @@
+const themePicker = document.querySelector("#theme");
+const themeStorageKey = "raion-theme";
+
+try {
+  if (localStorage.getItem(themeStorageKey) === "light") {
+    themePicker.value = "light";
+  }
+} catch {
+  // The selector still works when browser storage is unavailable.
+}
+
+document.documentElement.dataset.theme = themePicker.value;
+themePicker.closest("label").hidden = false;
+themePicker.addEventListener("change", () => {
+  document.documentElement.dataset.theme = themePicker.value;
+  try {
+    localStorage.setItem(themeStorageKey, themePicker.value);
+  } catch {
+    // The current page keeps the selected theme.
+  }
+});
+
 const photos = [...document.querySelectorAll(".hero-photos img")];
 const frames = [...document.querySelectorAll(".hero-frames button")];
 const controls = document.querySelector(".hero-controls");
