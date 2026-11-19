@@ -1,24 +1,52 @@
-const slides = [...document.querySelectorAll(".hero-slides img")];
+const photos = [...document.querySelectorAll(".hero-photos img")];
+const frames = [...document.querySelectorAll(".hero-frames button")];
+const controls = document.querySelector(".hero-controls");
+const pauseButton = document.querySelector(".hero-pause");
 const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
-let currentSlide = 0;
-let slideshow;
+const photoInterval = 5000;
+let currentPhoto = 0;
+let paused = false;
+let rotation;
 
-function updateSlideshow() {
-  window.clearInterval(slideshow);
-  if (motionPreference.matches || slides.length < 2 || document.hidden) return;
+function showPhoto(index) {
+  if (index === currentPhoto) return;
 
-  slideshow = window.setInterval(() => {
-    const nextSlide = (currentSlide + 1) % slides.length;
-    if (!slides[nextSlide].complete || !slides[nextSlide].naturalWidth) return;
-    slides[currentSlide].classList.remove("active");
-    slides[nextSlide].classList.add("active");
-    currentSlide = nextSlide;
-  }, 5000);
+  photos.forEach((photo, photoIndex) => {
+    photo.classList.toggle("previous", photoIndex === currentPhoto);
+    photo.classList.toggle("active", photoIndex === index);
+    photo.classList.toggle("reveal", photoIndex === index);
+    frames[photoIndex].setAttribute("aria-pressed", String(photoIndex === index));
+  });
+  currentPhoto = index;
 }
 
-motionPreference.addEventListener("change", updateSlideshow);
-document.addEventListener("visibilitychange", updateSlideshow);
-updateSlideshow();
+function scheduleRotation() {
+  window.clearInterval(rotation);
+  if (motionPreference.matches || paused || document.hidden) return;
+
+  rotation = window.setInterval(() => {
+    const nextPhoto = (currentPhoto + 1) % photos.length;
+    if (photos[nextPhoto].complete && photos[nextPhoto].naturalWidth) showPhoto(nextPhoto);
+  }, photoInterval);
+}
+
+frames.forEach((frame, index) => frame.addEventListener("click", () => {
+  showPhoto(index);
+  scheduleRotation();
+}));
+pauseButton.addEventListener("click", () => {
+  paused = !paused;
+  pauseButton.textContent = paused ? "Reanudar" : "Pausar";
+  scheduleRotation();
+});
+function updateMotionPreference() {
+  pauseButton.hidden = motionPreference.matches;
+  scheduleRotation();
+}
+motionPreference.addEventListener("change", updateMotionPreference);
+document.addEventListener("visibilitychange", scheduleRotation);
+controls.hidden = false;
+updateMotionPreference();
 
 const demoForm = document.querySelector("#demo-form");
 const demoUrl = document.querySelector("#demo-url");

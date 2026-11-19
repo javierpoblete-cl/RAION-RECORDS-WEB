@@ -24,13 +24,6 @@
   </header>
   <main>
     <section id="inicio" class="hero">
-      <div class="hero-slides" aria-hidden="true">
-        <img class="active" src="images/hero1.jpg" alt="">
-        <img src="images/hero2.jpg" alt="">
-        <img src="images/hero3.jpg" alt="">
-        <img src="images/hero4.jpg" alt="">
-        <img src="images/hero5.jpg" alt="">
-      </div>
       <div class="wrap hero-content">
         <h1>RAION RECORDS</h1>
         <p>Sello independiente de música electrónica desde Santiago, Chile.</p>
@@ -38,6 +31,25 @@
           <a class="button primary" href="#lanzamientos">Ver lanzamientos</a>
           <a class="button" href="https://open.spotify.com/playlist/4ABDzZbKL71qxiOpFofk8P">Playlist en Spotify</a>
           <a class="button" href="https://music.youtube.com/playlist?list=PLQv_XwvDzgWpQ5ZWu3sczhm1p5niV7PKl">Playlist en YouTube Music</a>
+        </div>
+      </div>
+      <div class="hero-gallery" aria-label="Galería de Raion Records">
+        <div class="hero-photos" aria-hidden="true">
+          <img class="active" src="images/hero1.jpg" alt="">
+          <img src="images/hero2.jpg" alt="">
+          <img src="images/hero3.jpg" alt="">
+          <img src="images/hero4.jpg" alt="">
+          <img src="images/hero5.jpg" alt="">
+        </div>
+        <div class="hero-controls" hidden>
+          <div class="hero-frames" role="group" aria-label="Seleccionar foto">
+            <button type="button" aria-label="Foto 1 de 5" aria-pressed="true"><img src="images/hero1.jpg" alt=""></button>
+            <button type="button" aria-label="Foto 2 de 5" aria-pressed="false"><img src="images/hero2.jpg" alt=""></button>
+            <button type="button" aria-label="Foto 3 de 5" aria-pressed="false"><img src="images/hero3.jpg" alt=""></button>
+            <button type="button" aria-label="Foto 4 de 5" aria-pressed="false"><img src="images/hero4.jpg" alt=""></button>
+            <button type="button" aria-label="Foto 5 de 5" aria-pressed="false"><img src="images/hero5.jpg" alt=""></button>
+          </div>
+          <button class="hero-pause" type="button">Pausar</button>
         </div>
       </div>
     </section>
@@ -68,7 +80,7 @@
     </section>
     <section id="artistas" class="wrap section">
       <h2>Nuestros artistas</h2>
-      <div class="grid">
+      <div class="grid artist-grid">
         <article class="card artist">
           <img class="portrait" src="https://raionrecords.com/images/artist1.jpg" alt="" loading="lazy">
           <img class="artist-logo" src="https://raionrecords.com/images/logos/logo1.png" alt="" loading="lazy">
@@ -116,6 +128,11 @@
           <img class="artist-logo" src="https://raionrecords.com/images/logos/logo8.png" alt="" loading="lazy">
           <h3>RïK</h3>
           <a href="https://open.spotify.com/intl-es/artist/6lWX23CKtgqL6Botb8DQjA" aria-label="RïK en Spotify">Spotify</a>
+        </article>
+        <article class="card artist">
+          <img class="portrait portrait-fadux" src="images/fadux.webp" alt="" loading="lazy" width="840" height="840">
+          <h3>FADUX</h3>
+          <a href="https://open.spotify.com/track/5ovHHZVc7WwYXoNpi5Qgg2" aria-label="Pulso Sur de FADUX en Spotify">Escuchar Pulso Sur</a>
         </article>
       </div>
     </section>
